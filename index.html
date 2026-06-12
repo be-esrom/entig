@@ -9,355 +9,132 @@
 <title>EnTig Dictionary</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  
   :root {
-    --bg: #ffffff;
-    --bg2: #f2f2f7;
-    --bg3: #e5e5ea;
-    --text: #000000;
-    --text2: #6e6e73;
-    --blue: #007aff;
-    --border: #c6c6c8;
-    --card: #ffffff;
+    --bg: #ffffff; --bg2: #f2f2f7; --bg3: #e5e5ea;
+    --text: #000000; --text2: #6e6e73; --blue: #007aff;
+    --border: #c6c6c8; --card: #ffffff;
   }
-
   @media (prefers-color-scheme: dark) {
     :root {
-      --bg: #000000;
-      --bg2: #1c1c1e;
-      --bg3: #2c2c2e;
-      --text: #ffffff;
-      --text2: #8e8e93;
-      --blue: #0a84ff;
-      --border: #38383a;
-      --card: #1c1c1e;
+      --bg: #000000; --bg2: #1c1c1e; --bg3: #2c2c2e;
+      --text: #ffffff; --text2: #8e8e93; --blue: #0a84ff;
+      --border: #38383a; --card: #1c1c1e;
     }
   }
-
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    max-width: 680px;
-    margin: 0 auto;
+    background: var(--bg); color: var(--text);
+    min-height: 100vh; max-width: 680px; margin: 0 auto;
   }
-
-  /* NAV TABS */
   .tabs {
-    position: fixed;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%;
-    max-width: 680px;
-    background: var(--bg);
-    border-top: 1px solid var(--border);
-    display: flex;
-    z-index: 100;
+    position: fixed; bottom: 0; left: 50%; transform: translateX(-50%);
+    width: 100%; max-width: 680px; background: var(--bg);
+    border-top: 1px solid var(--border); display: flex; z-index: 100;
     padding-bottom: env(safe-area-inset-bottom);
   }
-
   .tab {
-    flex: 1;
-    padding: 10px 0 8px;
-    text-align: center;
-    cursor: pointer;
-    color: var(--text2);
-    font-size: 10px;
-    border: none;
-    background: none;
+    flex: 1; padding: 10px 0 8px; text-align: center; cursor: pointer;
+    color: var(--text2); font-size: 10px; border: none; background: none;
   }
-
   .tab.active { color: var(--blue); }
   .tab svg { display: block; margin: 0 auto 3px; width: 24px; height: 24px; }
-
-  /* PAGES */
   .page { display: none; padding: 0 0 80px; }
   .page.active { display: block; }
-
-  /* HOME */
-  .home-header {
-    padding: 20px 16px 12px;
-  }
-
-  .home-header h1 {
-    font-size: 28px;
-    font-weight: 700;
-    letter-spacing: -0.5px;
-  }
-
-  .home-header p {
-    color: var(--text2);
-    font-size: 14px;
-    margin-top: 2px;
-  }
-
+  .home-header { padding: 20px 16px 12px; }
+  .home-header h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.5px; }
+  .home-header p { color: var(--text2); font-size: 14px; margin-top: 2px; }
   .wotd-card {
-    margin: 0 16px 20px;
-    padding: 20px;
-    background: var(--bg2);
-    border-radius: 16px;
-    border: 1px solid var(--border);
-    cursor: pointer;
+    margin: 0 16px 20px; padding: 20px; background: var(--bg2);
+    border-radius: 16px; border: 1px solid var(--border); cursor: pointer;
   }
-
-  .wotd-label {
-    font-size: 12px;
-    color: var(--text2);
-    font-weight: 600;
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-
-  .wotd-word {
-    font-size: 26px;
-    font-weight: 700;
-    margin-bottom: 4px;
-  }
-
-  .wotd-pronunc {
-    font-size: 14px;
-    color: var(--text2);
-    font-style: italic;
-    margin-bottom: 6px;
-  }
-
-  .wotd-pos {
-    display: inline-block;
-    font-size: 11px;
-    color: var(--text2);
-    background: var(--bg3);
-    padding: 2px 8px;
-    border-radius: 20px;
-    margin-bottom: 8px;
-  }
-
-  .wotd-def {
-    font-size: 14px;
-    color: var(--text);
-    line-height: 1.5;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-
-  .section-header {
-    padding: 0 16px 8px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
+  .wotd-label { font-size: 12px; color: var(--text2); font-weight: 600; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
+  .wotd-word { font-size: 26px; font-weight: 700; margin-bottom: 4px; }
+  .wotd-pronunc { font-size: 14px; color: var(--text2); font-style: italic; margin-bottom: 6px; }
+  .wotd-pos { display: inline-block; font-size: 11px; color: var(--text2); background: var(--bg3); padding: 2px 8px; border-radius: 20px; margin-bottom: 8px; }
+  .wotd-def { font-size: 14px; color: var(--text); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  .section-header { padding: 0 16px 8px; display: flex; justify-content: space-between; align-items: center; }
   .section-title { font-size: 17px; font-weight: 600; }
-
-  .section-clear {
-    font-size: 14px;
-    color: var(--blue);
-    cursor: pointer;
-    background: none;
-    border: none;
-    color: var(--blue);
-  }
-
-  .stats-row {
-    display: flex;
-    gap: 12px;
-    padding: 0 16px;
-    margin-top: 8px;
-  }
-
-  .stat-card {
-    flex: 1;
-    background: var(--bg2);
-    border-radius: 14px;
-    padding: 14px;
-    text-align: center;
-    border: 1px solid var(--border);
-  }
-
+  .section-clear { font-size: 14px; cursor: pointer; background: none; border: none; color: var(--blue); }
+  .stats-row { display: flex; gap: 12px; padding: 0 16px; margin-top: 8px; }
+  .stat-card { flex: 1; background: var(--bg2); border-radius: 14px; padding: 14px; text-align: center; border: 1px solid var(--border); }
   .stat-icon { font-size: 22px; margin-bottom: 4px; }
   .stat-value { font-size: 15px; font-weight: 700; }
   .stat-label { font-size: 11px; color: var(--text2); }
-
-  /* SEARCH */
-  .search-header {
-    padding: 20px 16px 12px;
-    font-size: 28px;
-    font-weight: 700;
+  .search-header { padding: 20px 16px 12px; font-size: 28px; font-weight: 700; }
+  /* Search direction toggle */
+  .direction-toggle {
+    display: flex; margin: 0 16px 12px; background: var(--bg2);
+    border-radius: 10px; padding: 2px; gap: 2px; border: 1px solid var(--border);
   }
-
+  .direction-btn {
+    flex: 1; padding: 8px; border: none; border-radius: 8px;
+    font-size: 13px; font-weight: 500; cursor: pointer;
+    background: none; color: var(--text2); font-family: inherit;
+    transition: all 0.2s;
+  }
+  .direction-btn.active {
+    background: var(--bg); color: var(--blue); font-weight: 600;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+  }
   .search-bar {
-    margin: 0 16px 12px;
-    display: flex;
-    align-items: center;
-    background: var(--bg2);
-    border-radius: 12px;
-    padding: 10px 14px;
-    gap: 8px;
+    margin: 0 16px 12px; display: flex; align-items: center;
+    background: var(--bg2); border-radius: 12px; padding: 10px 14px; gap: 8px;
+    border: 1px solid var(--border);
   }
-
   .search-bar svg { color: var(--text2); flex-shrink: 0; }
-
   .search-input {
-    flex: 1;
-    border: none;
-    background: none;
-    font-size: 16px;
-    color: var(--text);
-    outline: none;
-    font-family: inherit;
+    flex: 1; border: none; background: none; font-size: 16px;
+    color: var(--text); outline: none; font-family: inherit;
   }
-
-  .search-clear {
-    background: none;
-    border: none;
-    color: var(--text2);
-    cursor: pointer;
-    padding: 0;
-    display: flex;
-  }
-
-  .empty-state {
-    text-align: center;
-    padding: 60px 32px;
-    color: var(--text2);
-  }
-
+  .search-clear { background: none; border: none; color: var(--text2); cursor: pointer; padding: 0; display: flex; }
+  .empty-state { text-align: center; padding: 60px 32px; color: var(--text2); }
   .empty-state svg { margin: 0 auto 16px; opacity: 0.4; }
   .empty-state h3 { font-size: 18px; color: var(--text); margin-bottom: 6px; }
   .empty-state p { font-size: 14px; }
-
-  /* WORD LIST */
   .word-list { padding: 0 16px; }
-
-  .word-item {
-    padding: 12px 0;
-    border-bottom: 1px solid var(--border);
-    cursor: pointer;
-  }
-
+  .word-item { padding: 12px 0; border-bottom: 1px solid var(--border); cursor: pointer; }
   .word-item:last-child { border-bottom: none; }
-
   .word-item-entry { font-size: 16px; font-weight: 600; margin-bottom: 2px; }
   .word-item-pos { font-size: 12px; color: var(--blue); margin-bottom: 3px; }
-  .word-item-def {
-    font-size: 13px;
-    color: var(--text2);
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    line-height: 1.4;
-  }
-
-  /* HISTORY ITEMS */
-  .history-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    padding: 12px 16px;
-    border-bottom: 1px solid var(--border);
-    cursor: pointer;
-  }
-
-  .history-item svg { color: var(--text2); flex-shrink: 0; margin-top: 2px; }
-
-  /* WORD DETAIL PAGE */
+  .word-item-def { font-size: 13px; color: var(--text2); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.4; }
+  /* Reverse result badge */
+  .word-item-match { font-size: 11px; color: var(--text2); margin-bottom: 3px; background: var(--bg2); display: inline-block; padding: 1px 7px; border-radius: 10px; border: 1px solid var(--border); }
   .detail-page {
-    position: fixed;
-    top: 0; left: 50%; transform: translateX(-50%);
-    width: 100%; max-width: 680px;
-    height: 100vh;
-    background: var(--bg);
-    z-index: 200;
-    display: none;
-    flex-direction: column;
+    position: fixed; top: 0; left: 50%; transform: translateX(-50%);
+    width: 100%; max-width: 680px; height: 100vh; background: var(--bg);
+    z-index: 200; display: none; flex-direction: column;
   }
-
   .detail-page.open { display: flex; }
-
   .detail-nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 16px 16px 8px;
-    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 16px 8px; border-bottom: 1px solid var(--border);
   }
-
   .detail-back {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    color: var(--blue);
-    cursor: pointer;
-    font-size: 16px;
-    background: none;
-    border: none;
-    font-family: inherit;
+    display: flex; align-items: center; gap: 4px; color: var(--blue);
+    cursor: pointer; font-size: 16px; background: none; border: none; font-family: inherit;
   }
-
-  .detail-title {
-    font-size: 16px;
-    font-weight: 600;
-    flex: 1;
-    text-align: center;
-  }
-
-  .detail-star {
-    background: none;
-    border: none;
-    font-size: 22px;
-    cursor: pointer;
-    color: var(--blue);
-  }
-
+  .detail-title { font-size: 16px; font-weight: 600; flex: 1; text-align: center; }
+  .detail-star { background: none; border: none; font-size: 22px; cursor: pointer; color: var(--blue); }
   .detail-scroll { flex: 1; overflow-y: auto; padding: 16px; }
-
   .detail-word { font-size: 34px; font-weight: 700; margin-bottom: 6px; }
   .detail-pronunc { font-size: 16px; color: var(--text2); font-style: italic; margin-bottom: 8px; }
-
-  .detail-pos {
-    display: inline-block;
-    font-size: 12px;
-    color: var(--text2);
-    background: var(--bg2);
-    padding: 3px 10px;
-    border-radius: 20px;
-    margin-bottom: 14px;
-    border: 1px solid var(--border);
-  }
-
+  .detail-pos { display: inline-block; font-size: 12px; color: var(--text2); background: var(--bg2); padding: 3px 10px; border-radius: 20px; margin-bottom: 14px; border: 1px solid var(--border); }
   .detail-section { margin-bottom: 16px; }
   .detail-section-label { font-size: 13px; font-weight: 600; color: var(--text2); margin-bottom: 4px; }
   .detail-section-text { font-size: 16px; line-height: 1.6; }
-
   .detail-divider { height: 1px; background: var(--border); margin: 16px 0; }
-
   .subentry { margin-bottom: 16px; }
   .subentry-word { font-size: 20px; font-weight: 700; color: var(--blue); margin-bottom: 4px; }
   .subentry-pronunc { font-size: 14px; color: var(--text2); font-style: italic; margin-bottom: 4px; }
   .subentry-pos { font-size: 12px; color: var(--text2); background: var(--bg2); display: inline-block; padding: 2px 8px; border-radius: 20px; margin-bottom: 6px; border: 1px solid var(--border); }
   .subentry-def { font-size: 14px; line-height: 1.5; }
-
-  /* FAVORITES */
   .fav-empty { text-align: center; padding: 80px 32px; color: var(--text2); }
   .fav-empty h3 { font-size: 18px; color: var(--text); margin-bottom: 8px; }
-
-  /* Loading */
   .loading { text-align: center; padding: 40px; color: var(--text2); }
-
-  @media (max-width: 400px) {
-    .detail-word { font-size: 28px; }
-  }
 </style>
 </head>
 <body>
 
-<!-- DETAIL PAGE (overlay) -->
 <div class="detail-page" id="detailPage">
   <div class="detail-nav">
     <button class="detail-back" onclick="closeDetail()">
@@ -372,20 +149,15 @@
   <div class="detail-scroll" id="detailScroll"></div>
 </div>
 
-<!-- MAIN APP -->
 <div id="homePage" class="page active">
   <div class="home-header">
     <h1>EnTig Dictionary</h1>
     <p>English → Tigrinya</p>
   </div>
-
   <div class="wotd-card" id="wotdCard" onclick="openWordById(wotdId)">
-    <div class="wotd-label">
-      <span>⭐</span> Word of the Day
-    </div>
+    <div class="wotd-label"><span>⭐</span> Word of the Day</div>
     <div id="wotdContent" class="loading">Loading...</div>
   </div>
-
   <div id="recentSection" style="display:none; margin-bottom:20px;">
     <div class="section-header">
       <span class="section-title">Recent Searches</span>
@@ -393,33 +165,27 @@
     </div>
     <div class="word-list" id="recentList"></div>
   </div>
-
   <div class="stats-row">
-    <div class="stat-card">
-      <div class="stat-icon">📚</div>
-      <div class="stat-value">35,000+</div>
-      <div class="stat-label">Words</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-icon">🌍</div>
-      <div class="stat-value">2</div>
-      <div class="stat-label">Languages</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-icon">📶</div>
-      <div class="stat-value">Free</div>
-      <div class="stat-label">Forever</div>
-    </div>
+    <div class="stat-card"><div class="stat-icon">📚</div><div class="stat-value">35,000+</div><div class="stat-label">Words</div></div>
+    <div class="stat-card"><div class="stat-icon">🌍</div><div class="stat-value">2</div><div class="stat-label">Languages</div></div>
+    <div class="stat-card"><div class="stat-icon">📶</div><div class="stat-value">Free</div><div class="stat-label">Forever</div></div>
   </div>
 </div>
 
 <div id="searchPage" class="page">
   <div class="search-header">Search</div>
+
+  <!-- Direction Toggle -->
+  <div class="direction-toggle">
+    <button class="direction-btn active" id="btnEng" onclick="setDirection('eng')">🇬🇧 English → Tigrinya</button>
+    <button class="direction-btn" id="btnTig" onclick="setDirection('tig')">🇪🇷 Tigrinya → English</button>
+  </div>
+
   <div class="search-bar">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
       <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
     </svg>
-    <input class="search-input" id="searchInput" type="text" placeholder="Search English word" 
+    <input class="search-input" id="searchInput" type="text" placeholder="Search English word"
            oninput="onSearch()" autocomplete="off" autocorrect="off" spellcheck="false">
     <button class="search-clear" id="searchClearBtn" onclick="clearSearch()" style="display:none">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
@@ -436,14 +202,13 @@
 </div>
 
 <div id="historyPage" class="page">
-  <div class="search-header" style="display:flex;justify-content:space-between;align-items:center;">
+  <div class="search-header" style="display:flex;justify-content:space-between;align-items:center;padding-right:16px;">
     <span>History</span>
     <button class="section-clear" onclick="clearHistory(); renderHistory()">Clear</button>
   </div>
   <div id="historyList"></div>
 </div>
 
-<!-- TABS -->
 <div class="tabs">
   <button class="tab active" onclick="showTab('home',this)">
     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
@@ -468,39 +233,46 @@ let dict = [];
 let currentWord = null;
 let wotdId = null;
 let searchTimer = null;
+let searchDirection = 'eng'; // 'eng' or 'tig'
 
-// Load dictionary
 fetch('dictionary.json')
   .then(r => r.json())
   .then(data => {
     dict = data;
-    console.log('Loaded', dict.length, 'words');
     loadWordOfDay();
     renderHistory();
     renderFavorites();
+    renderRecentOnHome();
   })
   .catch(e => {
     document.getElementById('wotdContent').innerHTML = '<p>Error loading dictionary</p>';
-    console.error(e);
   });
 
 function loadWordOfDay() {
   const day = Math.floor(Date.now() / 86400000);
   const period = Math.floor(new Date().getHours() / 8);
   const seed = (day * 3 + period) * 43;
-  
   const candidates = dict.filter(w => w.e.length > 4 && w.d && w.d.length > 10 && w.pos);
   const word = candidates[seed % candidates.length];
-  
   if (!word) return;
   wotdId = word.id;
-
   document.getElementById('wotdContent').innerHTML = `
     <div class="wotd-word">${word.e}</div>
     ${word.p ? `<div class="wotd-pronunc">/ ${word.p} /</div>` : ''}
     ${word.pos ? `<span class="wotd-pos">${word.pos}</span>` : ''}
     <div class="wotd-def">${word.d}</div>
   `;
+}
+
+function setDirection(dir) {
+  searchDirection = dir;
+  document.getElementById('btnEng').classList.toggle('active', dir === 'eng');
+  document.getElementById('btnTig').classList.toggle('active', dir === 'tig');
+  const input = document.getElementById('searchInput');
+  input.placeholder = dir === 'eng' ? 'Search English word' : 'Search Tigrinya word / ቃል ድለ';
+  input.value = '';
+  document.getElementById('searchClearBtn').style.display = 'none';
+  showEmptyState();
 }
 
 function showTab(tab, btn) {
@@ -517,21 +289,19 @@ function onSearch() {
   const q = document.getElementById('searchInput').value.trim();
   document.getElementById('searchClearBtn').style.display = q ? 'flex' : 'none';
   clearTimeout(searchTimer);
-  searchTimer = setTimeout(() => doSearch(q), 150);
+  searchTimer = setTimeout(() => doSearch(q), 200);
 }
 
 function doSearch(q) {
-  const container = document.getElementById('searchResults');
-  if (!q) {
-    container.innerHTML = `<div class="empty-state">
-      <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-      <h3>Search the Dictionary</h3><p>Type an English word to begin</p></div>`;
-    return;
-  }
+  if (!q) { showEmptyState(); return; }
+  if (searchDirection === 'eng') searchEnglish(q);
+  else searchTigrinya(q);
+}
 
+function searchEnglish(q) {
+  const container = document.getElementById('searchResults');
   const ql = q.toLowerCase();
   const exact = [], starts = [], contains = [];
-
   for (const w of dict) {
     const el = w.e.toLowerCase();
     if (el === ql) exact.push(w);
@@ -539,21 +309,63 @@ function doSearch(q) {
     else if (el.includes(ql)) contains.push(w);
     if (exact.length + starts.length + contains.length >= 50) break;
   }
-
   const results = [...exact, ...starts, ...contains].slice(0, 50);
+  if (!results.length) { showNoResults(); return; }
+  container.innerHTML = `<div class="word-list">${results.map(w => wordItemHTML(w, null)).join('')}</div>`;
+}
 
-  if (!results.length) {
-    container.innerHTML = `<div class="empty-state">
-      <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-      <h3>No Results</h3><p>Try another word</p></div>`;
+function searchTigrinya(q) {
+  const container = document.getElementById('searchResults');
+  if (q.length < 2) {
+    container.innerHTML = `<div class="empty-state"><h3>Keep typing...</h3><p>Type more characters to search</p></div>`;
     return;
   }
 
-  container.innerHTML = `<div class="word-list">${results.map(w => wordItemHTML(w)).join('')}</div>`;
+  // Search through definitions and support info for Tigrinya text
+  const results = [];
+  for (const w of dict) {
+    const def = (w.d || '') + ' ' + (w.si || '');
+    if (def.includes(q)) {
+      results.push({ word: w, matchText: extractMatch(def, q) });
+    }
+    // Also check subentries
+    if (w.subs) {
+      for (const sub of w.subs) {
+        const subDef = (sub.d || '');
+        if (subDef.includes(q)) {
+          results.push({ word: w, matchText: extractMatch(subDef, q), subEntry: sub.e });
+          break;
+        }
+      }
+    }
+    if (results.length >= 30) break;
+  }
+
+  if (!results.length) { showNoResults(); return; }
+
+  container.innerHTML = `<div class="word-list">${results.map(r => reverseItemHTML(r)).join('')}</div>`;
 }
 
-function wordItemHTML(w) {
-  const defShort = w.d ? w.d.substring(0, 100) : '';
+function extractMatch(text, q) {
+  const idx = text.indexOf(q);
+  if (idx < 0) return '';
+  const start = Math.max(0, idx - 10);
+  const end = Math.min(text.length, idx + q.length + 40);
+  return (start > 0 ? '...' : '') + text.slice(start, end) + (end < text.length ? '...' : '');
+}
+
+function reverseItemHTML(r) {
+  const w = r.word;
+  return `<div class="word-item" onclick="openWord(${w.id})">
+    <div class="word-item-entry">${w.e}</div>
+    ${w.pos ? `<div class="word-item-pos">${w.pos}</div>` : ''}
+    ${r.subEntry ? `<div class="word-item-match">found in: ${r.subEntry}</div>` : ''}
+    <div class="word-item-def">${r.matchText || (w.d || '').substring(0, 80)}</div>
+  </div>`;
+}
+
+function wordItemHTML(w, matchText) {
+  const defShort = matchText || (w.d ? w.d.substring(0, 100) : '');
   return `<div class="word-item" onclick="openWord(${w.id})">
     <div class="word-item-entry">${w.e}</div>
     ${w.pos ? `<div class="word-item-pos">${w.pos}</div>` : ''}
@@ -561,10 +373,23 @@ function wordItemHTML(w) {
   </div>`;
 }
 
+function showEmptyState() {
+  const placeholder = searchDirection === 'eng' ? 'Type an English word to begin' : 'ቃል ጽሓፍ ድለ • Type a Tigrinya word';
+  document.getElementById('searchResults').innerHTML = `<div class="empty-state">
+    <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+    <h3>Search the Dictionary</h3><p>${placeholder}</p></div>`;
+}
+
+function showNoResults() {
+  document.getElementById('searchResults').innerHTML = `<div class="empty-state">
+    <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <h3>No Results</h3><p>Try another word</p></div>`;
+}
+
 function clearSearch() {
   document.getElementById('searchInput').value = '';
   document.getElementById('searchClearBtn').style.display = 'none';
-  doSearch('');
+  showEmptyState();
 }
 
 function openWordById(id) { openWord(id); }
@@ -573,13 +398,10 @@ function openWord(id) {
   const word = dict.find(w => w.id === id);
   if (!word) return;
   currentWord = word;
-
   addToHistory(word);
   renderRecentOnHome();
-
   document.getElementById('detailNavTitle').textContent = word.e;
   updateStarUI();
-
   let html = `
     <div class="detail-word">${word.e}</div>
     ${word.p ? `<div class="detail-pronunc">/ ${word.p} /</div>` : ''}
@@ -587,7 +409,6 @@ function openWord(id) {
     ${word.si ? `<div class="detail-section"><div class="detail-section-label">Additional Info</div><div class="detail-section-text">${word.si}</div></div>` : ''}
     ${word.d ? `<div class="detail-section"><div class="detail-section-label">Definition</div><div class="detail-section-text">${word.d}</div></div>` : ''}
   `;
-
   if (word.subs && word.subs.length > 0) {
     html += `<div class="detail-divider"></div>`;
     for (const sub of word.subs) {
@@ -599,7 +420,6 @@ function openWord(id) {
       </div>`;
     }
   }
-
   document.getElementById('detailScroll').innerHTML = html;
   document.getElementById('detailScroll').scrollTop = 0;
   document.getElementById('detailPage').classList.add('open');
@@ -610,14 +430,11 @@ function closeDetail() {
   currentWord = null;
 }
 
-// FAVORITES
 function getFavorites() {
   try { return JSON.parse(localStorage.getItem('favorites') || '[]'); } catch { return []; }
 }
 
-function saveFavorites(favs) {
-  localStorage.setItem('favorites', JSON.stringify(favs));
-}
+function saveFavorites(favs) { localStorage.setItem('favorites', JSON.stringify(favs)); }
 
 function toggleFavorite() {
   if (!currentWord) return;
@@ -631,8 +448,7 @@ function toggleFavorite() {
 
 function updateStarUI() {
   if (!currentWord) return;
-  const favs = getFavorites();
-  const isFav = favs.some(f => f.id === currentWord.id);
+  const isFav = getFavorites().some(f => f.id === currentWord.id);
   document.getElementById('detailStar').textContent = isFav ? '★' : '☆';
 }
 
@@ -640,17 +456,12 @@ function renderFavorites() {
   const favs = getFavorites();
   const container = document.getElementById('favoritesList');
   if (!favs.length) {
-    container.innerHTML = `<div class="fav-empty">
-      <div style="font-size:50px;margin-bottom:16px">☆</div>
-      <h3>No Favorites Yet</h3>
-      <p>Tap the star on any word to save it here</p>
-    </div>`;
+    container.innerHTML = `<div class="fav-empty"><div style="font-size:50px;margin-bottom:16px">☆</div><h3>No Favorites Yet</h3><p>Tap the star on any word to save it here</p></div>`;
     return;
   }
-  container.innerHTML = `<div class="word-list">${favs.map(w => wordItemHTML(w)).join('')}</div>`;
+  container.innerHTML = `<div class="word-list">${favs.map(w => wordItemHTML(w, null)).join('')}</div>`;
 }
 
-// HISTORY
 function getHistory() {
   try { return JSON.parse(localStorage.getItem('history') || '[]'); } catch { return []; }
 }
@@ -675,27 +486,20 @@ function renderRecentOnHome() {
   const list = document.getElementById('recentList');
   if (!h.length) { section.style.display = 'none'; return; }
   section.style.display = 'block';
-  list.innerHTML = h.map(w => wordItemHTML(w)).join('');
+  list.innerHTML = h.map(w => wordItemHTML(w, null)).join('');
 }
 
 function renderHistory() {
   const h = getHistory();
   const container = document.getElementById('historyList');
   if (!h.length) {
-    container.innerHTML = `<div class="fav-empty">
-      <div style="font-size:50px;margin-bottom:16px">🕐</div>
-      <h3>No History Yet</h3>
-      <p>Words you look up will appear here</p>
-    </div>`;
+    container.innerHTML = `<div class="fav-empty"><div style="font-size:50px;margin-bottom:16px">🕐</div><h3>No History Yet</h3><p>Words you look up will appear here</p></div>`;
     return;
   }
-  container.innerHTML = `<div class="word-list">${h.map(w => wordItemHTML(w)).join('')}</div>`;
+  container.innerHTML = `<div class="word-list">${h.map(w => wordItemHTML(w, null)).join('')}</div>`;
 }
 
-// Initial state
-document.getElementById('searchResults').innerHTML = `<div class="empty-state">
-  <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-  <h3>Search the Dictionary</h3><p>Type an English word to begin</p></div>`;
+showEmptyState();
 </script>
 </body>
 </html>
