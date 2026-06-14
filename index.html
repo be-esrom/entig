@@ -154,6 +154,13 @@
     <h1>EnTig Dictionary</h1>
     <p>English → Tigrinya</p>
   </div>
+  <div class="search-bar" onclick="showTab('search', document.querySelectorAll('.tab')[1]); document.getElementById('searchInput').focus()" style="cursor:pointer;">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+    </svg>
+    <span style="color:var(--text2); font-size:16px;">Search English or Tigrinya word</span>
+  </div>
+
   <div class="wotd-card" id="wotdCard" onclick="openWordById(wotdId)">
     <div class="wotd-label"><span>⭐</span> Word of the Day</div>
     <div id="wotdContent" class="loading">Loading...</div>
